@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 
+import Config from './app.config'
+
 @Module({
-  imports: [],
+  imports: [Config.ConfigModule],
   controllers: [],
   providers: [],
 })
