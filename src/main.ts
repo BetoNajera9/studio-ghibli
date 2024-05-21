@@ -1,19 +1,46 @@
-import { ConfigService } from '@nestjs/config';
-import { NestFactory } from '@nestjs/core';
-import { Logger } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { Logger, ValidationPipe } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { NestFactory } from '@nestjs/core'
 
-import { AppModule } from './app.module';
+import { HandlerError } from '@common/classes'
+
+import { AppModule } from './app.module'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+	const app = await NestFactory.create(AppModule)
 
-  const logger = new Logger('Boostrap')
+	const logger = new Logger('Boostrap')
 
-  const configService = app.get(ConfigService)
-  const appConfig = configService.get('app');
+	// Start handlerError
+	app.useGlobalFilters(new HandlerError())
 
-  await app.listen(appConfig.port, () => {
-    logger.log(`Service running on port ${appConfig.port}`)
-  });
+	// Set api prefix
+	app.setGlobalPrefix('api')
+
+	// Swagger configuration
+	const config = new DocumentBuilder()
+		.setTitle('Studio Ghibli')
+		.setDescription('Develop a user REST API')
+		.setVersion('0.0.1')
+		.build()
+	const document = SwaggerModule.createDocument(app, config)
+	SwaggerModule.setup('docs', app, document)
+
+	//Set validation pipe
+	app.useGlobalPipes(
+		new ValidationPipe({
+			whitelist: true,
+			forbidNonWhitelisted: true,
+		})
+	)
+
+	// Env variables
+	const configService = app.get(ConfigService)
+	const appConfig = configService.get('app')
+
+	await app.listen(appConfig.port, () => {
+		logger.log(`Service running on port ${appConfig.port}`)
+	})
 }
-bootstrap();
+bootstrap()
