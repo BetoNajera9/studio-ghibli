@@ -5,7 +5,7 @@ import { EUserStatus } from '@user/enums'
 
 import { DCreateUser } from './create-user.dto'
 
-export class UpdateUserDto extends PartialType(DCreateUser) {
+export class DUpdateUser extends PartialType(DCreateUser) {
 	/**
 	 * The user's status, based on an enum.
 	 *
@@ -13,7 +13,7 @@ export class UpdateUserDto extends PartialType(DCreateUser) {
 	 */
 	@ApiProperty({
 		example: EUserStatus.ACTIVE,
-		description: 'The user\'s status, based on an enum',
+		description: "The user's status, based on an enum",
 	})
 	@IsEnum(EUserStatus)
 	@IsOptional()
