@@ -98,7 +98,7 @@ export class DCreateUser {
 	 */
 	@ApiProperty({
 		example: EUserRole.ADMIN,
-		description: 'The user\'s role in the application',
+		description: "The user's role in the application",
 	})
 	@IsEnum(EUserRole)
 	@IsNotEmpty()

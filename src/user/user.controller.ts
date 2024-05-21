@@ -7,7 +7,6 @@ import {
 	Patch,
 	Query,
 	Body,
-	Post,
 	Get,
 } from '@nestjs/common'
 
@@ -15,10 +14,10 @@ import { ResponseService } from '@common/classes'
 import { IResponse } from '@common/interfaces'
 import { DPagination } from '@common/dtos'
 
-import { DCreateUser, UpdateUserDto } from './dto'
 import { User } from './entities/user.entity'
 import { UserService } from './user.service'
 import { EUserResponse } from './enums'
+import { DUpdateUser } from './dto'
 
 @ApiTags('User')
 @Controller('user')
@@ -83,7 +82,7 @@ export class UserController {
 	@Patch(':id')
 	async update(
 		@Param('id', IsObjectIdPipe) id: string,
-		@Body() updateUserDto: UpdateUserDto
+		@Body() updateUserDto: DUpdateUser
 	): Promise<IResponse<User>> {
 		const user = await this.userService.update(id, updateUserDto)
 

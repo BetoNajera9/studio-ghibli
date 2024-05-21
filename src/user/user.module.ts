@@ -9,5 +9,6 @@ import Config from './user.config'
 	imports: [Config.ConfigModule, Config.MongooseFeature],
 	controllers: [UserController],
 	providers: [UserService],
+	exports: [UserService],
 })
 export class UserModule {}
