@@ -9,17 +9,17 @@ import { IMeta } from '@common/interfaces'
  * @returns IMeta
  */
 export const handlerMeta = (
-  pagination: DPagination,
-  itemCount: number
+	pagination: DPagination,
+	itemCount: number
 ): IMeta => {
-  const pageCount = Math.ceil(itemCount / pagination.take)
+	const pageCount = Math.ceil(itemCount / pagination.take)
 
-  return {
-    page: pagination.page,
-    take: pagination.take,
-    itemCount,
-    pageCount,
-    hasPreviousPage: pagination.page > 1,
-    hasNextPage: pagination.page < pageCount,
-  }
+	return {
+		page: pagination.page,
+		take: pagination.take,
+		itemCount,
+		pageCount,
+		hasPreviousPage: pagination.page > 1,
+		hasNextPage: pagination.page < pageCount,
+	}
 }

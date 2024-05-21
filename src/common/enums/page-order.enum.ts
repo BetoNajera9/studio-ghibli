@@ -1,4 +1,4 @@
 export enum EPageOrder {
-  ASC = 1,
-  DESC = -1,
+	ASC = 1,
+	DESC = -1,
 }
