@@ -67,7 +67,7 @@ Depending on the environment, it is recommended to initialize the project.
 
 ## 📦 Deployment
 
-The API is currently hosted at [](), where it's serving requests around the clock. As the sole architect and developer, I've ensured that the deployment process is streamlined and the service is robust and user-friendly.
+The API is currently hosted in [railway](https://studio-ghibli-production.up.railway.app/api), where it's serving requests around the clock. As the sole architect and developer, I've ensured that the deployment process is streamlined and the service is robust and user-friendly.
 
 ### Deployment Features:
 
@@ -80,7 +80,7 @@ To start using the API, simply direct your HTTP requests to the provided endpoin
 
 ## Documentation 📄
 
-Documentation was created in swagger so first you have to run the project and it is in the [/docs]() path.
+Documentation was created in swagger so first you have to run the project and it is in the [/docs](https://studio-ghibli-production.up.railway.app/docs) path.
 
 ## Built with 🛠️
 
