@@ -27,7 +27,7 @@ export class AuthService {
 	async signUp(dCreateUser: DCreateUser): Promise<IAuthResponse> {
 		const user = await this.userService.create(dCreateUser)
 
-		const accessToken = this.signToken({ id: user.id })
+		const accessToken = this.signToken({ sub: user.id })
 
 		return {
 			user,
@@ -38,7 +38,7 @@ export class AuthService {
 	async logIn(dLogin: DLogin): Promise<IAuthResponse> {
 		const user = await this.userService.findByEmailOrUserName(dLogin.query)
 
-		const accessToken = this.signToken({ id: user.id })
+		const accessToken = this.signToken({ sub: user.id })
 
 		return {
 			user,
