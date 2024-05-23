@@ -1,3 +1,4 @@
+import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken'
 import { Response } from 'express'
 import {
 	UnauthorizedException,
@@ -53,6 +54,15 @@ export class HandlerError implements ExceptionFilter {
 			success: false,
 			statusCode: `${code}`,
 			message,
+		}
+
+		if (
+			exception instanceof JsonWebTokenError ||
+			exception instanceof TokenExpiredError
+		) {
+			code = HttpStatus.UNAUTHORIZED
+
+			resData.message = `Invalid access token`
 		}
 
 		switch (exception.constructor) {
