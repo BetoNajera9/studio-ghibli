@@ -2,6 +2,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { IsObjectIdPipe } from 'nestjs-object-id'
 import {
 	Controller,
+	UseGuards,
 	Delete,
 	Param,
 	Patch,
@@ -12,6 +13,7 @@ import {
 
 import { ResponseService } from '@common/classes'
 import { IResponse } from '@common/interfaces'
+import { GAuth } from '@server/auth/guards'
 import { DPagination } from '@common/dtos'
 
 import { User } from './entities/user.entity'
@@ -20,6 +22,7 @@ import { EUserResponse } from './enums'
 import { DUpdateUser } from './dto'
 
 @ApiTags('User')
+@UseGuards(GAuth)
 @Controller('user')
 export class UserController {
 	private responseService: ResponseService
