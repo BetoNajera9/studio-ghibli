@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common'
 import * as jwt from 'jsonwebtoken'
 
-import { User } from '@user/entities/user.entity'
 import { UserService } from '@user/user.service'
 import { ConfigType } from '@nestjs/config'
 import { DCreateUser } from '@user/dto'

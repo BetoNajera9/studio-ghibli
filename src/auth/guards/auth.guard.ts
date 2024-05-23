@@ -1,6 +1,6 @@
 import { ConfigType } from '@nestjs/config'
-import { Request } from 'express'
 import * as Jwt from 'jsonwebtoken'
+import { Request } from 'express'
 import {
 	UnauthorizedException,
 	ExecutionContext,
@@ -9,10 +9,10 @@ import {
 	Inject,
 } from '@nestjs/common'
 
-import { config } from '../auth.config'
-import { EAuthResponse } from '@auth/enums'
 import { UserService } from '@user/user.service'
 import { IPayload } from '@auth/interfaces'
+
+import { config } from '../auth.config'
 
 @Injectable()
 export class GAuth implements CanActivate {
@@ -23,7 +23,7 @@ export class GAuth implements CanActivate {
 	) {}
 
 	async canActivate(context: ExecutionContext): Promise<boolean> {
-		const req = context.switchToHttp().getRequest<Request>()
+		const req = context.switchToHttp().getRequest()
 
 		const bearerToken = req.headers['authorization']
 		if (!bearerToken) throw new UnauthorizedException('Invalid Token')
@@ -40,7 +40,7 @@ export class GAuth implements CanActivate {
 		const user = await this.userService.findOne(manageToken.sub)
 		if (!user) throw new UnauthorizedException('Invalid Token')
 
-		req.params.user = manageToken.sub
+		req.user = user
 
 		return true
 	}
