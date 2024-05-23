@@ -23,6 +23,7 @@ async function bootstrap() {
 		.setTitle('Studio Ghibli')
 		.setDescription('Develop a user REST API')
 		.setVersion('0.0.1')
+		.addBearerAuth()
 		.build()
 	const document = SwaggerModule.createDocument(app, config)
 	SwaggerModule.setup('docs', app, document)
@@ -32,6 +33,10 @@ async function bootstrap() {
 		new ValidationPipe({
 			whitelist: true,
 			forbidNonWhitelisted: true,
+			transform: true,
+			transformOptions: {
+				enableImplicitConversion: true,
+			},
 		})
 	)
 
