@@ -18,6 +18,9 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
+      "@studio-ghibli/*": [
+        "src/studio-ghibli/*"
+      ],
       "@common/*": [
         "src/common/*"
       ],

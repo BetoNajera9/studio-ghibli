@@ -1,5 +1,10 @@
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { IsObjectIdPipe } from 'nestjs-object-id'
+import {
+	ApiBearerAuth,
+	ApiOperation,
+	ApiResponse,
+	ApiTags,
+} from '@nestjs/swagger'
 import {
 	Controller,
 	UseGuards,
@@ -22,6 +27,7 @@ import { EUserResponse } from './enums'
 import { DUpdateUser } from './dto'
 
 @ApiTags('User')
+@ApiBearerAuth()
 @UseGuards(GAuth)
 @Controller('user')
 export class UserController {

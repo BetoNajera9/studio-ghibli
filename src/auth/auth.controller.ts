@@ -1,4 +1,4 @@
-import { ApiOperation, ApiResponse } from '@nestjs/swagger'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Controller, Post, Body } from '@nestjs/common'
 
 import { ResponseService } from '@common/classes'
@@ -10,6 +10,7 @@ import { IAuthResponse } from './interfaces'
 import { EAuthResponse } from './enums'
 import { DLogin } from './dto'
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
 	private responseService: ResponseService
